@@ -46,22 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mService = APIUtils.getPricesService();
-        mRecyclerView = findViewById(R.id.recycler_view);
-        search = findViewById(R.id.search);
-        mDropDown = findViewById(R.id.spinner1);
-        intentService = new Intent(MainActivity.this, MyService.class);
-        items = new String[]{"USD", "CNY", "EUR", "GBP", "RUR"};
-        mSpinneradapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, items);
-        mAdapter = new PricesAdapter(this);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-     //   names = (ArrayList<CoinPrice>)getIntent().getSerializableExtra("prices");
-
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setHasFixedSize(true);
-        mDropDown.setAdapter(mSpinneradapter);
+        setLayout();
         addTextListener();
         startService(intentService);
 
@@ -235,7 +220,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
+    public void setLayout(){
+        mService = APIUtils.getPricesService();
+        mRecyclerView = findViewById(R.id.recycler_view);
+        search = findViewById(R.id.search);
+        mDropDown = findViewById(R.id.spinner1);
+        intentService = new Intent(MainActivity.this, MyService.class);
+        items = new String[]{"USD", "CNY", "EUR", "GBP", "RUR"};
+        mSpinneradapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, items);
+        mAdapter = new PricesAdapter(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setHasFixedSize(true);
+        mDropDown.setAdapter(mSpinneradapter);
+    }
 }
 
 

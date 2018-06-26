@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,10 +33,11 @@ public class PricesAdapter extends RecyclerView.Adapter<PricesAdapter.ViewHolder
     public PricesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.rows, parent, false);
         return new ViewHolder(view);
+
     }
 
     @Override
-    public void onBindViewHolder(final PricesAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final PricesAdapter.ViewHolder holder, final int position) {
         final CoinPrice item = mItems.get(position);
         holder.myTextViewName.setText(item.getName());
         holder.itemView.setSelected(selected_pos == position);
